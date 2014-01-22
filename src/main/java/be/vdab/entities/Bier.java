@@ -42,7 +42,7 @@ public class Bier implements Serializable {
 	private Soort soort;
 
 	@ManyToOne
-	@JoinColumn(name = "soortNr")
+	@JoinColumn(name = "brouwerNr")
 	private Brouwer brouwer;
 
 	public Bier() {

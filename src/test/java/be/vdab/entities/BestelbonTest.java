@@ -29,7 +29,7 @@ public class BestelbonTest {
 	}
 
 	@Test
-	public void GetTotaalVanBestelBonGivesRightTotal() {
+	public void getTotaalVanBestelBonGivesRightTotal() {
 		assertEquals(0, new BigDecimal(20).compareTo(bestelbon.getTotaalVanBestelBon()));
 	}
 }

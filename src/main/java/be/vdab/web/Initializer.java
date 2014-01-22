@@ -2,12 +2,15 @@ package be.vdab.web;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class Initializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+import be.vdab.dao.CreateDAOBeans;
+import be.vdab.services.CreateServiceBeans;
+
+public class Initializer extends
+		AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Class<?>[] { CreateDAOBeans.class, CreateServiceBeans.class };
 	}
 
 	@Override
