@@ -82,6 +82,11 @@ public class Bestelbon implements Serializable {
 		this.adres = adres;
 	}
 	
+	
+	public void setBestelbonLijnen(Set<BestelbonLijn> bestelbonLijnen) {
+		this.bestelbonLijnen = bestelbonLijnen;
+	}
+
 	/*
 	 * methode om bestelbonlijn toe te voegen aan de set bestelbonlijnen
 	 */

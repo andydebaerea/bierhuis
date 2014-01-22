@@ -45,7 +45,7 @@ public class Bier implements Serializable {
 	@JoinColumn(name = "soortNr")
 	private Brouwer brouwer;
 
-	protected Bier() {
+	public Bier() {
 	}
 
 	/*
