@@ -26,10 +26,10 @@ public class BrouwerController {
 				brouwerService.findAll());
 	}
 	
-	@RequestMapping(value = "{id}",method = RequestMethod.GET)
-	ModelAndView findBierenFromBrouwer(@PathVariable long id){
+	@RequestMapping(value = "{brouwerNr}/bieren",method = RequestMethod.GET)
+	ModelAndView findBierenFromBrouwer(@PathVariable long brouwerNr){
 		ModelAndView modelAndView = new ModelAndView("brouwers/bieren");
-		Brouwer brouwer = brouwerService.read(id);
+		Brouwer brouwer = brouwerService.read(brouwerNr);
 		modelAndView.addObject(brouwer);
 		modelAndView.addObject("bieren", brouwer.getBieren());
 		return modelAndView;

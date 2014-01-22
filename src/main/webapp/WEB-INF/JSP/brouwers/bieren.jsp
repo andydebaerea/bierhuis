@@ -16,7 +16,7 @@
 
 	<ul>
 		<c:forEach items='${bieren}' var='bier'>
-			<li><spring:url var='url' value='/brouwers/{bierNr}'>
+			<li><spring:url var='url' value='/bieren/{bierNr}'>
 					<spring:param name='bierNr' value='${bier.bierNr}' />
 				</spring:url> <a href='${url}'>${bier.naam}</a></li>
 		</c:forEach>
