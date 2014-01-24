@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import be.vdab.dao.BierDAO;
+import be.vdab.entities.Bier;
 
 @Service
 @Transactional(readOnly = true)
@@ -21,4 +22,8 @@ public class BierServiceImpl implements BierService {
 		return bierDAO.count();
 	}
 
+	@Override
+	public Bier read(long bierNr) {
+		return bierDAO.findOne(bierNr);
+	}
 }

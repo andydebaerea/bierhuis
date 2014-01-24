@@ -4,17 +4,16 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.NumberFormat;
-import org.springframework.format.annotation.NumberFormat.Style;
 
 @Entity
 @Table(name = "bieren")
@@ -29,11 +28,11 @@ public class Bier implements Serializable {
 	private String naam;
 
 	@NotNull
-	@Digits(integer = 2, fraction = 1)
+	@NumberFormat(pattern = "#,##0")
 	private BigDecimal Alcohol;
 
 	@NotNull
-	@NumberFormat(style = Style.CURRENCY)
+	@NumberFormat(pattern = "#,##0")
 	@Min(0)
 	private BigDecimal prijs;
 
@@ -41,7 +40,7 @@ public class Bier implements Serializable {
 	@JoinColumn(name = "soortNr")
 	private Soort soort;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "brouwerNr")
 	private Brouwer brouwer;
 

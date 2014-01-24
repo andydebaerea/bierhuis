@@ -4,7 +4,7 @@
 <!doctype html>
 <html lang='nl'>
 <head>
-<title>bieren</title>
+<title>bier</title>
 <link rel='stylesheet'
 	href='${pageContext.servletContext.contextPath}/styles/default.css'>
 </head>
@@ -12,15 +12,7 @@
 
 	<c:import url='/WEB-INF/JSP/index.jsp' />
 
-	<h1>${brouwer.naam} (${brouwer.adres.gemeente})</h1>
+	<h1>Je winkelmandje is bevestigd als bestelbon </h1>
 
-	<ul>
-		<c:forEach items='${brouwer.bieren}' var='bier'>
-			<li><spring:url var='url' value='/bieren/{bierNr}'>
-					<spring:param name='bierNr' value='${bier.bierNr}' />
-				</spring:url> <a href='${url}'>${bier.naam}</a></li>
-		</c:forEach>
-	</ul>
-	
 </body>
 </html>

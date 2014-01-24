@@ -19,10 +19,11 @@ import javax.validation.constraints.Size;
 
 import be.vdab.valueobjects.Adres;
 import be.vdab.valueobjects.BestelbonLijn;
+import be.vdab.web.WinkelWagen;
 
 @Entity
 @Table(name = "bestelbonnen")
-public class Bestelbon implements Serializable {
+public class Bestelbon implements Serializable, WinkelWagen {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -40,8 +41,7 @@ public class Bestelbon implements Serializable {
 	@CollectionTable(name = "bestelbonlijnen", joinColumns = @JoinColumn(name = "bonNr"))
 	private Set<BestelbonLijn> bestelbonLijnen;
 
-	
-	protected Bestelbon() {
+	public Bestelbon() {
 	}
 
 	public Bestelbon(String naam, Adres adres) {
@@ -50,8 +50,9 @@ public class Bestelbon implements Serializable {
 		bestelbonLijnen = new HashSet<>();
 	}
 
-	public Bestelbon(Set<BestelbonLijn> bestelbonLijnen) {
-		this.bestelbonLijnen = bestelbonLijnen;
+	public Bestelbon(BestelbonLijn bestelbonLijn) {
+		bestelbonLijnen = new HashSet<>();
+		bestelbonLijnen.add(bestelbonLijn);
 	}
 
 	/*
@@ -70,10 +71,18 @@ public class Bestelbon implements Serializable {
 		return adres;
 	}
 
+	@Override
 	public Set<BestelbonLijn> getBestelbonlijnen() {
 		return Collections.unmodifiableSet(bestelbonLijnen);
 	}
+	/*
+	 * setters
+	 */
 
+	public void setbonNr(long bonNr) {
+		this.bonNr = bonNr;
+	}
+	
 	public void setNaam(String naam) {
 		this.naam = naam;
 	}
@@ -81,8 +90,7 @@ public class Bestelbon implements Serializable {
 	public void setAdres(Adres adres) {
 		this.adres = adres;
 	}
-	
-	
+
 	public void setBestelbonLijnen(Set<BestelbonLijn> bestelbonLijnen) {
 		this.bestelbonLijnen = bestelbonLijnen;
 	}
@@ -90,6 +98,14 @@ public class Bestelbon implements Serializable {
 	/*
 	 * methode om bestelbonlijn toe te voegen aan de set bestelbonlijnen
 	 */
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * be.vdab.entities.bestelbonInterface#addBestelbonlijn(be.vdab.valueobjects
+	 * .BestelbonLijn)
+	 */
+	@Override
 	public void addBestelbonlijn(BestelbonLijn bestelbonLijn) {
 		bestelbonLijnen.add(bestelbonLijn);
 		if (bestelbonLijn.getBestelbon() != this)
@@ -99,11 +115,19 @@ public class Bestelbon implements Serializable {
 	/*
 	 * methode voor het berekenen van het totaal van de bestelbon
 	 */
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see be.vdab.entities.bestelbonInterface#getTotaalVanBestelBon()
+	 */
+	@Override
 	public BigDecimal getTotaalVanBestelBon() {
 		BigDecimal totaalVanBestelBon = BigDecimal.ZERO;
-		for (BestelbonLijn bestelbonLijn : bestelbonLijnen) {
-			totaalVanBestelBon = totaalVanBestelBon.add(bestelbonLijn
-					.getTotaalPerLijn());
+		if (!bestelbonLijnen.isEmpty()) {
+			for (BestelbonLijn bestelbonLijn : bestelbonLijnen) {
+				totaalVanBestelBon = totaalVanBestelBon.add(bestelbonLijn
+						.getTotaalPerLijn());
+			}
 		}
 		return totaalVanBestelBon;
 	}

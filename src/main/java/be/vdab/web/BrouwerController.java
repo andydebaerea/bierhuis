@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import be.vdab.entities.Brouwer;
 import be.vdab.services.BrouwerService;
 
 @Controller
@@ -28,11 +27,7 @@ public class BrouwerController {
 	
 	@RequestMapping(value = "{brouwerNr}/bieren",method = RequestMethod.GET)
 	ModelAndView findBierenFromBrouwer(@PathVariable long brouwerNr){
-		ModelAndView modelAndView = new ModelAndView("brouwers/bieren");
-		Brouwer brouwer = brouwerService.read(brouwerNr);
-		modelAndView.addObject(brouwer);
-		modelAndView.addObject("bieren", brouwer.getBieren());
-		return modelAndView;
+		return new ModelAndView("brouwers/bieren", "brouwer", brouwerService.read(brouwerNr));
 		
 	}
 }

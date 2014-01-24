@@ -14,6 +14,31 @@
 
 	<h1>${bier.naam}</h1>
 
+	<dl>
+		<dt>Alcohol</dt>
+		<dd>
+			<spring:eval expression="bier.alcohol"></spring:eval>
+			%
+		</dd>
+		<dt>Prijs</dt>
+		<dd><spring:eval expression="bier.prijs"></spring:eval> €</dd>
+		<dt>Soort</dt>
+		<dd>${bier.soort.naam}</dd>
+		<dt>Bouwer</dt>
+		<dd>${bier.brouwer.naam}</dd> </dl>
+		
+		<spring:url var='toevoegenURL' value='/winkelwagen/toevoegen/{bierNr}'>
+					<spring:param name='bierNr' value='${bier.bierNr}' />
+				</spring:url>
+	<form action="${toevoegenURL}" method="post">
+		<label>Aantal <c:if test="${not empty aantal}">
+			</c:if> <input type="number" name="aantal" autofocus
+			/></label><span class="fout">${fout}</span> <input
+			type="submit" value="Toevoegen">
+	</form>
+
 	
+
+
 </body>
 </html>

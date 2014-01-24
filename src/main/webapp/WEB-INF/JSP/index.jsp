@@ -3,6 +3,6 @@
 <ul class="zonderbolletjes">
 <li><a href="<c:url value='/'/>"> Welkom</a></li>
 <li><a href='<c:url value="/brouwers"/>'> Bieren van een Brouwer</a></li>
-<li><a href='<c:url value="/winkelwagen"/>'> Winkelwagen</a>
+<li><a href='<c:url value="/winkelwagen/inhoud"/>'> Winkelwagen</a>
 </ul>
 </nav>

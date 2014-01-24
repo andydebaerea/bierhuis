@@ -7,8 +7,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
-import be.vdab.entities.Bestelbon;
 import be.vdab.entities.Bier;
+import be.vdab.web.WinkelWagen;
 
 
 public class BestelbonLijn implements Serializable {
@@ -18,7 +18,7 @@ public class BestelbonLijn implements Serializable {
 	@JoinColumn(name = "wijnNr")
 	private Bier bier;
 	@Transient
-	private Bestelbon bestelbon;
+	private WinkelWagen bestelbon;
 
 	protected BestelbonLijn() {
 	}
@@ -40,7 +40,7 @@ public class BestelbonLijn implements Serializable {
 		return bier;
 	}
 
-	public Bestelbon getBestelbon() {
+	public WinkelWagen getBestelbon() {
 		return bestelbon;
 	}
 	/*
@@ -55,7 +55,7 @@ public class BestelbonLijn implements Serializable {
 		this.bier = bier;
 	}
 
-	public void setBestelBon(Bestelbon bestelbon) {
+	public void setBestelBon(WinkelWagen bestelbon) {
 		this.bestelbon = bestelbon;
 	}
 	/*

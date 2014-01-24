@@ -69,3 +69,7 @@ tbody tr:nth-child(odd) {
 	display: inline;
 	margin-right: 0.2em;
 }
+
+.right {
+	text-align: right;
+}

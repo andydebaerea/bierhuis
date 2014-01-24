@@ -29,7 +29,7 @@ public class Adres implements Serializable {
 	private String gemeente;
 	
 	
-	protected Adres() {
+	public Adres() {
 	}
 
 	public Adres(String straat, String huisNr, Integer postcode, String gemeente) {
