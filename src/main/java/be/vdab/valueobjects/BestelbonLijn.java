@@ -3,22 +3,21 @@ package be.vdab.valueobjects;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
 
 import be.vdab.entities.Bier;
-import be.vdab.web.WinkelWagen;
 
-
+@Embeddable
 public class BestelbonLijn implements Serializable {
 	private static final long serialVersionUID = 1L;
+
 	private int aantal;
+
 	@ManyToOne
-	@JoinColumn(name = "wijnNr")
+	@JoinColumn(name = "bierNr")
 	private Bier bier;
-	@Transient
-	private WinkelWagen bestelbon;
 
 	protected BestelbonLijn() {
 	}
@@ -40,9 +39,6 @@ public class BestelbonLijn implements Serializable {
 		return bier;
 	}
 
-	public WinkelWagen getBestelbon() {
-		return bestelbon;
-	}
 	/*
 	 * setters
 	 */
@@ -55,9 +51,6 @@ public class BestelbonLijn implements Serializable {
 		this.bier = bier;
 	}
 
-	public void setBestelBon(WinkelWagen bestelbon) {
-		this.bestelbon = bestelbon;
-	}
 	/*
 	 * methode voor totaalprijs per bestelbonlijn uit te rekenen
 	 */
@@ -65,8 +58,9 @@ public class BestelbonLijn implements Serializable {
 	public BigDecimal getTotaalPerLijn() {
 		return bier.getPrijs().multiply(new BigDecimal(aantal));
 	}
+
 	/*
-	 * hachcode en equals op wijn
+	 * hachcode en equals op bier
 	 */
 
 	@Override

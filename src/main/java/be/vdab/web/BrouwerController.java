@@ -25,7 +25,7 @@ public class BrouwerController {
 				brouwerService.findAll());
 	}
 	
-	@RequestMapping(value = "{brouwerNr}/bieren",method = RequestMethod.GET)
+	@RequestMapping(value = "{brouwerNr}",method = RequestMethod.GET)
 	ModelAndView findBierenFromBrouwer(@PathVariable long brouwerNr){
 		return new ModelAndView("brouwers/bieren", "brouwer", brouwerService.read(brouwerNr));
 		

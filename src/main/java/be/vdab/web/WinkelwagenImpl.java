@@ -19,8 +19,6 @@ public class WinkelwagenImpl implements WinkelWagen, Serializable{
 	@Override
 	public void addBestelbonlijn(BestelbonLijn bestelbonLijn) {
 		bestelbonLijnen.add(bestelbonLijn);
-		if (bestelbonLijn.getBestelbon() != this)
-			bestelbonLijn.setBestelBon(this);
 		
 	}
 

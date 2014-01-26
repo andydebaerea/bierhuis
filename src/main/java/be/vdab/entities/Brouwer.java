@@ -1,6 +1,7 @@
 package be.vdab.entities;
 
 import java.io.Serializable;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.persistence.Embedded;
@@ -10,8 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.Valid;
 
 import be.vdab.valueobjects.Adres;
 
@@ -19,31 +19,37 @@ import be.vdab.valueobjects.Adres;
 @Table(name = "Brouwers")
 public class Brouwer implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue
 	private Long brouwerNr;
-	
-	@NotNull
-	@Size(min = 1, max = 50, message = "{Size.tekst}")
+
 	private String naam;
-	
+
 	@Embedded
+	@Valid
 	private Adres adres;
-	
+
+	private Integer omzet;
+
 	@OneToMany(mappedBy = "brouwer", fetch = FetchType.EAGER)
 	private Set<Bier> bieren;
-	
-	protected Brouwer(){
-		
+
+	public Brouwer() {
+
 	}
-	
+
 	public Brouwer(String naam, Adres adres, Set<Bier> bieren) {
 		this.naam = naam;
 		this.adres = adres;
-		this.bieren = bieren;
+		this.bieren = new LinkedHashSet<>();
 	}
 
+	public Brouwer(long brouwerNr, String naam, Adres adres, Integer omzet) {
+		setBrouwerNr(brouwerNr);
+		setNaam(naam);
+		setAdres(adres);
+	}
 
 	/*
 	 * getters voor variabelen
@@ -64,11 +70,13 @@ public class Brouwer implements Serializable {
 		return bieren;
 	}
 
-
-
 	/*
 	 * setters voor variabelen
 	 */
+	public void setBrouwerNr(long brouwerNr) {
+		this.brouwerNr = brouwerNr;
+	}
+
 	public void setNaam(String naam) {
 		this.naam = naam;
 	}
@@ -80,8 +88,6 @@ public class Brouwer implements Serializable {
 	public void setBieren(Set<Bier> bieren) {
 		this.bieren = bieren;
 	}
-
-
 
 	/*
 	 * tostring method geeft waarden van brouwer terug
@@ -119,7 +125,5 @@ public class Brouwer implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
-	
+
 }

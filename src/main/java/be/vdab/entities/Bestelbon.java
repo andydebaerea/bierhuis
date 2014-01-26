@@ -3,7 +3,7 @@ package be.vdab.entities;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.persistence.CollectionTable;
@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -34,12 +35,13 @@ public class Bestelbon implements Serializable, WinkelWagen {
 	@Size(min = 1, max = 50, message = "{Size.tekst}")
 	private String naam;
 
+	@Valid
 	@Embedded
 	private Adres adres;
 
 	@ElementCollection
 	@CollectionTable(name = "bestelbonlijnen", joinColumns = @JoinColumn(name = "bonNr"))
-	private Set<BestelbonLijn> bestelbonLijnen;
+	private Set<BestelbonLijn> bestelbonLijnen = new LinkedHashSet<>();
 
 	public Bestelbon() {
 	}
@@ -47,12 +49,13 @@ public class Bestelbon implements Serializable, WinkelWagen {
 	public Bestelbon(String naam, Adres adres) {
 		setNaam(naam);
 		setAdres(adres);
-		bestelbonLijnen = new HashSet<>();
 	}
 
-	public Bestelbon(BestelbonLijn bestelbonLijn) {
-		bestelbonLijnen = new HashSet<>();
-		bestelbonLijnen.add(bestelbonLijn);
+	public Bestelbon(long bonNr, String naam, Adres adres) {
+		setBonNr(bonNr);
+		setNaam(naam);
+		setAdres(adres);
+
 	}
 
 	/*
@@ -75,14 +78,15 @@ public class Bestelbon implements Serializable, WinkelWagen {
 	public Set<BestelbonLijn> getBestelbonlijnen() {
 		return Collections.unmodifiableSet(bestelbonLijnen);
 	}
+
 	/*
 	 * setters
 	 */
 
-	public void setbonNr(long bonNr) {
+	public void setBonNr(long bonNr) {
 		this.bonNr = bonNr;
 	}
-	
+
 	public void setNaam(String naam) {
 		this.naam = naam;
 	}
@@ -108,8 +112,6 @@ public class Bestelbon implements Serializable, WinkelWagen {
 	@Override
 	public void addBestelbonlijn(BestelbonLijn bestelbonLijn) {
 		bestelbonLijnen.add(bestelbonLijn);
-		if (bestelbonLijn.getBestelbon() != this)
-			bestelbonLijn.setBestelBon(this);
 	}
 
 	/*
@@ -123,11 +125,10 @@ public class Bestelbon implements Serializable, WinkelWagen {
 	@Override
 	public BigDecimal getTotaalVanBestelBon() {
 		BigDecimal totaalVanBestelBon = BigDecimal.ZERO;
-		if (!bestelbonLijnen.isEmpty()) {
-			for (BestelbonLijn bestelbonLijn : bestelbonLijnen) {
-				totaalVanBestelBon = totaalVanBestelBon.add(bestelbonLijn
-						.getTotaalPerLijn());
-			}
+		for (BestelbonLijn bestelbonLijn : bestelbonLijnen) {
+			totaalVanBestelBon = totaalVanBestelBon.add(bestelbonLijn
+					.getTotaalPerLijn());
+
 		}
 		return totaalVanBestelBon;
 	}

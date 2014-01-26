@@ -19,7 +19,7 @@ public class BestelbonServiceImpl implements BestelbonService {
 	
 	@Override
 	public void create(Bestelbon bestelbon) {
-		bestelbon.setbonNr(bestelbonDAO.save(bestelbon).getBonNr());
+		bestelbon.setBonNr(bestelbonDAO.save(bestelbon).getBonNr());
 	}
 
 }
