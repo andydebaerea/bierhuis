@@ -23,7 +23,7 @@
 			<th>Te Betalen</th>
 		</tr>
 
-		<c:forEach items="${winkelwagen.bestelbonlijnen}" var="bestelbonlijn">
+		<c:forEach items="${bestelbon.bestelbonlijnen}" var="bestelbonlijn">
 			<tr>
 				<td>${bestelbonlijn.bier.naam}
 				<td class="right"><spring:eval
@@ -36,7 +36,7 @@
 
 		<tr>
 			<td class="right" colspan="4">Totaal: <fmt:formatNumber
-					value="${winkelwagen.totaalVanBestelBon}" /></td>
+					value="${bestelbon.totaalVanBestelBon}" /></td>
 		</tr>
 
 	</table>

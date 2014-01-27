@@ -1,9 +1,6 @@
 package be.vdab.web;
 
-import java.math.BigDecimal;
-import java.util.Set;
-
-import be.vdab.valueobjects.BestelbonLijn;
+import java.util.Map;
 
 public interface WinkelWagen {
 
@@ -13,10 +10,8 @@ public interface WinkelWagen {
 	void addItem(long bierNr, int aatal);
 
 	/*
-	 * methode voor het berekenen van het totaal van de winkelwagen
+	 * methode voor teruggeven van de artikelen die in mandje aaanwezig zijn
 	 */
-	BigDecimal getTotaalVanWinkelmandje();
-
-	Set<BestelbonLijn> getBestelbonlijnen();
+	Map<Long, Integer> getItems();
 
 }

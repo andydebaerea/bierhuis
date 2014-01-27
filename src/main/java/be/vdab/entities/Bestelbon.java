@@ -20,7 +20,6 @@ import javax.validation.constraints.Size;
 
 import be.vdab.valueobjects.Adres;
 import be.vdab.valueobjects.BestelbonLijn;
-import be.vdab.web.WinkelWagen;
 
 @Entity
 @Table(name = "bestelbonnen")
