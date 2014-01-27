@@ -24,7 +24,7 @@ import be.vdab.web.WinkelWagen;
 
 @Entity
 @Table(name = "bestelbonnen")
-public class Bestelbon implements Serializable, WinkelWagen {
+public class Bestelbon implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -74,7 +74,6 @@ public class Bestelbon implements Serializable, WinkelWagen {
 		return adres;
 	}
 
-	@Override
 	public Set<BestelbonLijn> getBestelbonlijnen() {
 		return Collections.unmodifiableSet(bestelbonLijnen);
 	}
@@ -102,14 +101,6 @@ public class Bestelbon implements Serializable, WinkelWagen {
 	/*
 	 * methode om bestelbonlijn toe te voegen aan de set bestelbonlijnen
 	 */
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * be.vdab.entities.bestelbonInterface#addBestelbonlijn(be.vdab.valueobjects
-	 * .BestelbonLijn)
-	 */
-	@Override
 	public void addBestelbonlijn(BestelbonLijn bestelbonLijn) {
 		bestelbonLijnen.add(bestelbonLijn);
 	}
@@ -117,12 +108,6 @@ public class Bestelbon implements Serializable, WinkelWagen {
 	/*
 	 * methode voor het berekenen van het totaal van de bestelbon
 	 */
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see be.vdab.entities.bestelbonInterface#getTotaalVanBestelBon()
-	 */
-	@Override
 	public BigDecimal getTotaalVanBestelBon() {
 		BigDecimal totaalVanBestelBon = BigDecimal.ZERO;
 		for (BestelbonLijn bestelbonLijn : bestelbonLijnen) {

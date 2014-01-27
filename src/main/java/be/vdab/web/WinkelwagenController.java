@@ -33,8 +33,7 @@ public class WinkelwagenController {
 
 	@RequestMapping(value = "toevoegen/{bierNr}", params = "aantal")
 	ModelAndView toevoegen(@PathVariable Long bierNr, int aantal) {
-		winkelwagen.addBestelbonlijn(new BestelbonLijn(aantal, bierService
-				.read(bierNr)));
+		winkelwagen.addItem(bierNr, aantal);
 		return ObjectenToevoegenAanModelAndView();
 	}
 

@@ -8,14 +8,14 @@ import be.vdab.valueobjects.BestelbonLijn;
 public interface WinkelWagen {
 
 	/*
-	 * methode om bestelbonlijn toe te voegen aan de set bestelbonlijnen
+	 * methode om item toe te voegen aan de winkelwagen
 	 */
-	void addBestelbonlijn(BestelbonLijn bestelbonLijn);
+	void addItem(long bierNr, int aatal);
 
 	/*
-	 * methode voor het berekenen van het totaal van de bestelbon
+	 * methode voor het berekenen van het totaal van de winkelwagen
 	 */
-	BigDecimal getTotaalVanBestelBon();
+	BigDecimal getTotaalVanWinkelmandje();
 
 	Set<BestelbonLijn> getBestelbonlijnen();
 
