@@ -32,7 +32,7 @@ public class Brouwer implements Serializable {
 
 	private Integer omzet;
 
-	@OneToMany(mappedBy = "brouwer", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "brouwer")
 	private Set<Bier> bieren;
 
 	public Brouwer() {

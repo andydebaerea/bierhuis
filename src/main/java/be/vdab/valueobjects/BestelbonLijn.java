@@ -6,6 +6,8 @@ import java.math.BigDecimal;
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 import be.vdab.entities.Bier;
 
@@ -13,13 +15,15 @@ import be.vdab.entities.Bier;
 public class BestelbonLijn implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@NotNull
+	@Min(value = 1)
 	private int aantal;
 
 	@ManyToOne
 	@JoinColumn(name = "bierNr")
 	private Bier bier;
 
-	protected BestelbonLijn() {
+	public BestelbonLijn() {
 	}
 
 	public BestelbonLijn(int aantal, Bier bier) {

@@ -8,22 +8,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "soorten")
 public class Soort implements Serializable{
 	private static final long serialVersionUID = 1L;
 
-	@NotNull
 	@Id
 	@GeneratedValue
 	private Long soortNr;
 	
-	@NotNull
 	private String naam;
 	
-	@NotNull
 	@OneToMany(mappedBy = "soort")
 	private Set<Bier> bieren;
 	

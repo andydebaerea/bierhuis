@@ -21,9 +21,19 @@ public class WinkelwagenImpl implements WinkelWagen, Serializable{
 	}
 
 	@Override
-	public void addItem(long bierNr, int aatal) {
-		items.put(bierNr, aatal);
-		
+	public void addItem(long bierNr, int aantal) {
+		if (items.containsKey(bierNr)) {
+			int newAantal = aantal + items.get(bierNr).intValue();
+			items.remove(bierNr);
+			items.put(bierNr, newAantal);
+		} else {
+			items.put(bierNr, aantal);
+		}
+	}
+	
+	@Override
+	public void winkelwagenLedigen () {
+		items.clear();
 	}
 
 }

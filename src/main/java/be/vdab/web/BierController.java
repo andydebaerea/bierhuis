@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import be.vdab.services.BierService;
+import be.vdab.valueobjects.BestelbonLijn;
 
 @Controller
 @RequestMapping("/bieren")
@@ -21,6 +22,9 @@ public class BierController {
 	
 	@RequestMapping(value= "{bierNr}", method = RequestMethod.GET)
 	ModelAndView read(@PathVariable long bierNr) {
-		return new ModelAndView("bieren/bier", "bier", bierService.read(bierNr)); 
+		ModelAndView modelAndView = new ModelAndView("bieren/bier");
+		modelAndView.addObject("bestelbonlijn", new BestelbonLijn());
+		modelAndView.addObject("bier", bierService.read(bierNr));
+		return modelAndView;
 	}
 }

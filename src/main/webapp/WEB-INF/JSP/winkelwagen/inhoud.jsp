@@ -15,6 +15,9 @@
 	<c:import url='/WEB-INF/JSP/index.jsp' />
 
 	<h1>Winkelwagen</h1>
+	<p class="fout">${fout}</p>
+	<c:if test="${empty fout}">
+
 	<table>
 		<tr>
 			<th>BierWijn</th>
@@ -53,6 +56,7 @@
 			document.getElementById('bevestigknop').disabled = true;
 		};
 	</script>
+	</c:if>
 
 </body>
 </html>

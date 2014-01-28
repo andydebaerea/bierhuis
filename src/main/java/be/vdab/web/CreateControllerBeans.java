@@ -1,8 +1,13 @@
 package be.vdab.web;
 
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.validation.Validator;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.validation.beanvalidation.SpringValidatorAdapter;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -25,5 +30,25 @@ public class CreateControllerBeans extends WebMvcConfigurationSupport {
 	.addResourceLocations("/images/");
 	registry.addResourceHandler("/styles/**").addResourceLocations("/styles/");
 	registry.addResourceHandler("/scripts/**").addResourceLocations("/scripts/");
+	}
+	
+	@Bean
+	public LocalValidatorFactoryBean validatorFactory() {
+		LocalValidatorFactoryBean validatorFactory = new LocalValidatorFactoryBean();
+		validatorFactory.setValidationMessageSource(messageSource());
+		return validatorFactory;
+	}
+	
+	@Override
+	public Validator getValidator() {
+		return new SpringValidatorAdapter(validatorFactory().getValidator());
+	}
+	
+	@Bean
+	public MessageSource messageSource() {
+		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+		messageSource.setBasename("classpath:/resourceBundles/teksten");
+		messageSource.setFallbackToSystemLocale(false);
+		return messageSource;
 	}
 }

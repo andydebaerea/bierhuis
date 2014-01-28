@@ -1,5 +1,8 @@
 package be.vdab.services;
 
+import java.util.List;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,4 +29,10 @@ public class BierServiceImpl implements BierService {
 	public Bier read(long bierNr) {
 		return bierDAO.findOne(bierNr);
 	}
+	
+	@Override
+	public List<Bier> finditemsInWinkelWagen(Set<Long> bierNrs) {
+		return bierDAO.findAll(bierNrs);
+	}
 }
+

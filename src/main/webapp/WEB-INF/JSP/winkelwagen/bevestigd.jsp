@@ -12,7 +12,7 @@
 
 	<c:import url='/WEB-INF/JSP/index.jsp' />
 
-	<h1>Je winkelmandje is bevestigd als bestelbon </h1>
+	<h1>Je winkelmandje is bevestigd als bestelbon ${bonNr}</h1>
 
 </body>
 </html>

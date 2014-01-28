@@ -10,7 +10,7 @@
 <form:label path='adres.huisNr'>Huisnummer:
 <form:errors path='adres.huisNr' cssClass='fout' />
 </form:label>
-<form:input path='adres.huisNr' type='number' />
+<form:input path='adres.huisNr' />
 <form:label path='adres.postcode'>Postcode:
 <form:errors path='adres.postcode' cssClass='fout' />
 </form:label>

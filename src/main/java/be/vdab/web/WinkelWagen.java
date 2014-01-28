@@ -13,5 +13,7 @@ public interface WinkelWagen {
 	 * methode voor teruggeven van de artikelen die in mandje aaanwezig zijn
 	 */
 	Map<Long, Integer> getItems();
+	
+	void winkelwagenLedigen ();
 
 }

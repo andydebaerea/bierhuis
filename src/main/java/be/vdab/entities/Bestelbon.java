@@ -38,6 +38,8 @@ public class Bestelbon implements Serializable {
 	@Embedded
 	private Adres adres;
 
+	@NotNull
+	@Valid
 	@ElementCollection
 	@CollectionTable(name = "bestelbonlijnen", joinColumns = @JoinColumn(name = "bonNr"))
 	private Set<BestelbonLijn> bestelbonLijnen = new LinkedHashSet<>();
