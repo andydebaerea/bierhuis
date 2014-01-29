@@ -28,7 +28,7 @@ public class Bestelbon implements Serializable {
 
 	@Id
 	@GeneratedValue
-	private Long bonNr;
+	private long bonNr;
 
 	@NotNull
 	@Size(min = 1, max = 50, message = "{Size.tekst}")
@@ -63,7 +63,7 @@ public class Bestelbon implements Serializable {
 	 * getters
 	 */
 
-	public Long getBonNr() {
+	public long getBonNr() {
 		return bonNr;
 	}
 

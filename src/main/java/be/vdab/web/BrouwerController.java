@@ -11,7 +11,7 @@ import be.vdab.services.BrouwerService;
 
 @Controller
 @RequestMapping("/brouwers")
-public class BrouwerController {
+class BrouwerController {
 	private final BrouwerService brouwerService;
 
 	@Autowired
@@ -27,7 +27,6 @@ public class BrouwerController {
 	
 	@RequestMapping(value = "{brouwerNr}",method = RequestMethod.GET)
 	ModelAndView findBierenFromBrouwer(@PathVariable long brouwerNr){
-		return new ModelAndView("brouwers/bieren", "brouwer", brouwerService.read(brouwerNr));
-		
+		return new ModelAndView("brouwers/bieren", "brouwer", brouwerService.read(brouwerNr));	
 	}
 }

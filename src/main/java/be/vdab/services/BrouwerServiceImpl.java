@@ -10,7 +10,7 @@ import be.vdab.entities.Brouwer;
 
 @Service
 @Transactional(readOnly = true)
-public class BrouwerServiceImpl implements BrouwerService {
+class BrouwerServiceImpl implements BrouwerService {
 	private final BrouwerDAO brouwerDAO;
 	
 	@Autowired

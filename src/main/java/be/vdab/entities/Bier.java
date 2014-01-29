@@ -22,7 +22,7 @@ public class Bier implements Serializable {
 
 	@Id
 	@GeneratedValue
-	private Long bierNr;
+	private long bierNr;
 
 	@NotNull
 	private String naam;
@@ -50,7 +50,7 @@ public class Bier implements Serializable {
 	/*
 	 * getters voor variabelen
 	 */
-	public Long getBierNr() {
+	public long getBierNr() {
 		return bierNr;
 	}
 
@@ -112,7 +112,7 @@ public class Bier implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((Alcohol == null) ? 0 : Alcohol.hashCode());
-		result = prime * result + ((brouwer == null) ? 0 : brouwer.hashCode());
+		result = prime * result + ((brouwer == null) ? 0 : (int) brouwer.getBrouwerNr());
 		result = prime * result + ((naam == null) ? 0 : naam.hashCode());
 		return result;
 	}
@@ -134,7 +134,7 @@ public class Bier implements Serializable {
 		if (brouwer == null) {
 			if (other.brouwer != null)
 				return false;
-		} else if (!brouwer.equals(other.brouwer))
+		} else if (brouwer.getBrouwerNr() != other.brouwer.getBrouwerNr())
 			return false;
 		if (naam == null) {
 			if (other.naam != null)

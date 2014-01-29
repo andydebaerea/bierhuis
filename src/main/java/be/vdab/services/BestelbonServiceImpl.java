@@ -8,8 +8,8 @@ import be.vdab.dao.BestelbonDAO;
 import be.vdab.entities.Bestelbon;
 
 @Service
-@Transactional
-public class BestelbonServiceImpl implements BestelbonService {
+@Transactional(readOnly = true)
+class BestelbonServiceImpl implements BestelbonService {
 	private final BestelbonDAO bestelbonDAO;
 	
 	@Autowired
@@ -18,6 +18,7 @@ public class BestelbonServiceImpl implements BestelbonService {
 	}
 	
 	@Override
+	@Transactional(readOnly = false)
 	public void create(Bestelbon bestelbon) {
 		bestelbon.setBonNr(bestelbonDAO.save(bestelbon).getBonNr());
 	}

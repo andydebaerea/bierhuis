@@ -21,7 +21,7 @@ import be.vdab.valueobjects.BestelbonLijn;
 
 @Controller
 @RequestMapping("/winkelwagen")
-public class WinkelwagenController {
+class WinkelwagenController {
 	private final BierService bierService;
 	private final BestelbonService bestelbonService;
 	private final WinkelWagen winkelwagen;
@@ -34,27 +34,13 @@ public class WinkelwagenController {
 		this.bestelbonService = bestelbonService;
 	}
 
-	/*
-	 * voegt na valideren van aantal
-	 * biernr en aantal aan winkelmandje toe
-	 */
-	@RequestMapping(value = "toevoegen/{bierNr}", params = "aantal")
-	String toevoegen(@PathVariable Long bierNr,
-			@Valid BestelbonLijn bestelbonLijn, BindingResult bindingResult) {
-		if (bindingResult.hasErrors()) {
-			return "redirect:/bieren/" + bierNr;
-		}
-		winkelwagen.addItem(bierNr, bestelbonLijn.getAantal());
-		return "redirect:/winkelwagen/inhoud";
-	}
 
 	/*
-	 * validatie van bestelbon en 
-	 * bestelbon aanmaken
+	 * validatie van bestelbon en bestelbon aanmaken
 	 */
 	@RequestMapping(value = "bevestigen", method = RequestMethod.POST)
-	String Bevestigen(@Valid Bestelbon bestelbon,
-			BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+	String Bevestigen(@Valid Bestelbon bestelbon, BindingResult bindingResult,
+			RedirectAttributes redirectAttributes) {
 		itemsVanWinkelwagenOverbrengenNaarBestelbon(bestelbon);
 		if (bindingResult.hasErrors() || winkelwagen.getItems().isEmpty()) {
 			return "winkelwagen/inhoud";
@@ -82,7 +68,7 @@ public class WinkelwagenController {
 	}
 
 	/*
-	 * kassa brengt art. van winkelkarretje naar bestelbon
+	 * kassa brengt art. van winkelwagen naar bestelbon
 	 */
 	private Bestelbon itemsVanWinkelwagenOverbrengenNaarBestelbon(
 			Bestelbon bestelbon) {
@@ -94,10 +80,10 @@ public class WinkelwagenController {
 		}
 		return bestelbon;
 	}
-	
+
 	/*
-	 * bon is bevestigd door @WinkelwagenContoller.Bevestigen
-	 * deze methode heeft bonNr teug aan jsp
+	 * bon is bevestigd door @WinkelwagenContoller.Bevestigen deze methode heeft
+	 * bonNr teug aan jsp
 	 */
 	@RequestMapping(value = "bevestigd/{bonNr}")
 	ModelAndView Bonbevestigd(@PathVariable Long bonNr) {

@@ -32,11 +32,11 @@
 		<dd>${bier.brouwer.naam}</dd>
 	</dl>
 
-	<spring:url var='toevoegenURL' value='/winkelwagen/toevoegen/{bierNr}'>
+	<spring:url var='toevoegenURL' value='/bieren/toevoegen/{bierNr}'>
 		<spring:param name='bierNr' value='${bier.bierNr}' />
 	</spring:url>
 	<form:form action="${toevoegenURL}" method="post"
-		commandName="bestelbonlijn" id="aantalform">
+		commandName="bestelbonlijnForm" id="aantalform">
 		<jsp:include page="aantalitemsformfields.jsp"></jsp:include>
 		<input type="submit" value="Toevoegen" id="aantalknop">
 	</form:form>

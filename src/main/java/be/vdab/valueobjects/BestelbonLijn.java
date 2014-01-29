@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Embeddable;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Min;
@@ -19,7 +20,7 @@ public class BestelbonLijn implements Serializable {
 	@Min(value = 1)
 	private int aantal;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "bierNr")
 	private Bier bier;
 
@@ -71,7 +72,7 @@ public class BestelbonLijn implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((bier == null) ? 0 : bier.hashCode());
+		result = prime * result + ((bier == null) ? 0 : (int) bier.getBierNr());
 		return result;
 	}
 
@@ -87,7 +88,7 @@ public class BestelbonLijn implements Serializable {
 		if (bier == null) {
 			if (other.bier != null)
 				return false;
-		} else if (!bier.equals(other.bier))
+		} else if (bier.getBierNr() != other.bier.getBierNr())
 			return false;
 		return true;
 	}

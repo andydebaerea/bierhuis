@@ -12,7 +12,7 @@ import be.vdab.entities.Bier;
 
 @Service
 @Transactional(readOnly = true)
-public class BierServiceImpl implements BierService {
+class BierServiceImpl implements BierService {
 	private final BierDAO bierDAO;
 	
 	@Autowired

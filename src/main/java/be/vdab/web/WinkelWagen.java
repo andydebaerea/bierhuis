@@ -2,7 +2,7 @@ package be.vdab.web;
 
 import java.util.Map;
 
-public interface WinkelWagen {
+interface WinkelWagen {
 
 	/*
 	 * methode om item toe te voegen aan de winkelwagen

@@ -10,7 +10,7 @@ import be.vdab.services.BierService;
 
 @Controller
 @RequestMapping("/")
-public class WelkomController {
+class WelkomController {
 	private final BierService bierService;
 	
 	@Autowired

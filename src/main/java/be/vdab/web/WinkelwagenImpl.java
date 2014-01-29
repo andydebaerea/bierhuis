@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Scope(value = "session", proxyMode = ScopedProxyMode.INTERFACES)
-public class WinkelwagenImpl implements WinkelWagen, Serializable{
+class WinkelwagenImpl implements WinkelWagen, Serializable{
 	private static final long serialVersionUID = 1L;
 	private Map<Long, Integer> items = new HashMap<Long, Integer>();
 

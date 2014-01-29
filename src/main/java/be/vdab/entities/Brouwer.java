@@ -22,7 +22,7 @@ public class Brouwer implements Serializable {
 
 	@Id
 	@GeneratedValue
-	private Long brouwerNr;
+	private long brouwerNr;
 
 	private String naam;
 
@@ -54,7 +54,7 @@ public class Brouwer implements Serializable {
 	/*
 	 * getters voor variabelen
 	 */
-	public Long getBrouwerNr() {
+	public long getBrouwerNr() {
 		return brouwerNr;
 	}
 
@@ -105,7 +105,7 @@ public class Brouwer implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((naam == null) ? 0 : naam.hashCode());
+		result = prime * result + ((naam == null) ? 0 : naam.toUpperCase().hashCode());
 		return result;
 	}
 
@@ -121,7 +121,7 @@ public class Brouwer implements Serializable {
 		if (naam == null) {
 			if (other.naam != null)
 				return false;
-		} else if (!naam.equals(other.naam))
+		} else if (!naam.equalsIgnoreCase(other.naam))
 			return false;
 		return true;
 	}
