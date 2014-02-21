@@ -12,7 +12,7 @@ import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
 public class CreateJndiDataSourceBean {
 	@Bean
 	DataSource dataSource() {
-		return new JndiDataSourceLookup().getDataSource("java:comp/env/jdbc/bierhuis");
+		return new JndiDataSourceLookup().getDataSource("java:comp/env/jdbc/bierhuisandy");
 	}
 
 }
