@@ -4,7 +4,7 @@
   <resource name="jdbc/bierhuis" auth="Container" type="javax.sql.DataSource">
     <param name="username" value="andydeb" />
     <param name="password" value="sedition1" />
-    <param name="url" value="jdbc:cloudbees://bierhuisandy" />
+    <param name="url" value="jdbc:mysql://ec2-23-21-211-172.compute-1.amazonaws.com:3306/bierhuisandy" />
 
     <!-- Connection Pool settings -->
     <param name="maxActive" value="5" />
