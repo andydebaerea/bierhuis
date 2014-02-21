@@ -10,13 +10,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 @Configuration
 @ComponentScan("be.vdab.dao")
-
 @PropertySource("classpath:/database.properties")
 @EnableJpaRepositories(basePackageClasses={CreateDAOBeans.class})
 public class CreateDAOBeans {
@@ -26,7 +26,10 @@ public class CreateDAOBeans {
 	private DataSource dataSource;
 	
 	
-	
+	@Bean
+	DataSource dataSource() {
+	return new JndiDataSourceLookup().getDataSource("java:comp/env/jdbc/bierhuis");
+	}
 	
 	
 	
