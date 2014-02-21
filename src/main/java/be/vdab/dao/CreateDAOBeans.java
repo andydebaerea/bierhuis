@@ -16,7 +16,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 @Configuration
 @ComponentScan("be.vdab.dao")
-@PropertySource("classpath:/database.properties")
+
 @EnableJpaRepositories(basePackageClasses={CreateDAOBeans.class})
 public class CreateDAOBeans {
 	@Autowired
