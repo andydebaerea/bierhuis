@@ -17,11 +17,11 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 @Configuration
 @ComponentScan("be.vdab.dao")
-@PropertySource("classpath:/database.properties")
+//@PropertySource("classpath:/database.properties")
 @EnableJpaRepositories(basePackageClasses={CreateDAOBeans.class})
 public class CreateDAOBeans {
-	@Autowired
-	private Environment environment;
+	//@Autowired
+	//private Environment environment;
 	@Autowired
 	private DataSource dataSource;
 	
@@ -40,8 +40,8 @@ public class CreateDAOBeans {
 		entityManagerFactoryBean.setPackagesToScan("be.vdab.entities",
 				"be.vdab.valueobjects");
 		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-		vendorAdapter.setShowSql(environment.getProperty("database.showSql",
-				Boolean.class));
+		vendorAdapter.setShowSql(true); //environment.getProperty("database.showSql",
+				//Boolean.class));
 		entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
 		return entityManagerFactoryBean;
 	}
