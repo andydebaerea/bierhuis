@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import be.vdab.entities.Brouwer;
 import be.vdab.services.BrouwerService;
 
 @Controller
@@ -25,8 +26,8 @@ class BrouwerController {
 				brouwerService.findAll());
 	}
 	
-	@RequestMapping(value = "{brouwerNr}",method = RequestMethod.GET)
-	ModelAndView findBierenFromBrouwer(@PathVariable long brouwerNr){
-		return new ModelAndView("brouwers/bieren", "brouwer", brouwerService.read(brouwerNr));	
+	@RequestMapping(value = "{brouwer}",method = RequestMethod.GET)
+	ModelAndView findBierenFromBrouwer(@PathVariable Brouwer brouwer){
+		return new ModelAndView("brouwers/bieren", "brouwer", brouwer);	
 	}
 }

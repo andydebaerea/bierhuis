@@ -6,7 +6,6 @@ import java.util.Set;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -30,7 +29,6 @@ public class Brouwer implements Serializable {
 	@Valid
 	private Adres adres;
 
-	private Integer omzet;
 
 	@OneToMany(mappedBy = "brouwer")
 	private Set<Bier> bieren;
