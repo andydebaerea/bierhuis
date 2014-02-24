@@ -1,9 +1,18 @@
 body {
 	font-family: Verdana;
-	background-color: #FFE200;
+	background-color: #d4d4d4;
 	margin-left:auto;
 	margin-right:auto;
-	width:70%;
+	width:60%;
+}
+nav {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1.25em;
+	background-color: #FFFF00;
+}
+img{
+	height: auto;
+	width: 100%;
 }
 
 dt {
