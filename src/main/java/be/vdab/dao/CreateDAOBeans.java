@@ -28,7 +28,7 @@ public class CreateDAOBeans {
 	
 	@Bean
 	DataSource dataSource() {
-	return new JndiDataSourceLookup().getDataSource("/jdbc/bierhuis");
+	return new JndiDataSourceLookup().getDataSource("java:jdbc/bierhuis");
 	}
 	
 	
