@@ -1,9 +1,10 @@
 package be.vdab.services;
 
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-
+@Service
 public class HeartBeatServiceImpl implements HeartBeatService {
 	private final RestTemplate restTemplate = new RestTemplate();
 	
